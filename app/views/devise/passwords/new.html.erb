@@ -1,0 +1,24 @@
+<% image = image_path('mexico-4.jpg') %>
+<%= render partial: 'devise/shared/styles', locals: {image: image} %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="wrap">
+        <p class="form-title"><%= t('forgot_your_password?') %></p>
+        <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'login' }) do |f| %>
+          <%= f.error_notification %>
+          <%= f.input :email, required: true, autofocus: true, wrapper: false %>
+          <%= f.button :submit, "Enviar instrucciones", class: "btn btn-sm" %>
+          <div class="remember-forgot">
+            <div class="row">
+              <div class="col-md-12 forgot-pass-content">
+                <%= render "devise/shared/links" %>
+              </div>
+            </div>
+          </div>
+         <% end %>
+      </div>
+    </div>
+  </div>
+</div>

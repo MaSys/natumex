@@ -1,0 +1,30 @@
+es:
+  simple_form:
+    "yes": 'Si'
+    "no": 'No'
+    required:
+      text: 'requerido'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Favor de revisar los siguientes errores en el forma:"
+    # Examples
+    labels:
+      defaults:
+        email: 'Correo electronico'
+        password: 'Contraseña'
+        password_confirmation: 'Confirmar contraseña'
+        first_name: 'Nombre'
+        last_name: 'Apellido'
+      user:
+        new:
+          email: 'Correo electronico'
+        edit:
+          email: 'Correo electronico'
+      question:
+        one: 'Pregunta'
+        other: 'Preguntas'
+        answers: 'Respuestas'
+    hints:

@@ -1,0 +1,58 @@
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('<%= image_path('mexico-0.jpg') %>')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="site-heading">
+          <h1>Contáctanos</h1>
+          <hr class="small">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <p>Quieres contactarme? Llena la forma abajo para mandarme mensage y trataré de contestarte en 24 horas!</p>
+            <form method="post" action="/contact/send_mail">
+                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control" placeholder="Nombre" name="mail[name]" required />
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>correo electronico</label>
+                        <input type="email" class="form-control" placeholder="correo electronico" name="mail[email]" required />
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Telefono</label>
+                        <input type="tel" class="form-control" placeholder="Telefono" name="mail[phone]" />
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Mensage</label>
+                        <textarea rows="5" class="form-control" placeholder="Mensage" name="mail[message]" required></textarea>
+                    </div>
+                </div>
+                <br>
+                <div id="success"></div>
+                <div class="row">
+                    <div class="form-group col-xs-12">
+                        <button type="submit" class="btn btn-default">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr>

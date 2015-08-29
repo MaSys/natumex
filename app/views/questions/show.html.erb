@@ -1,0 +1,40 @@
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('<%= image_path('mexico-' + rand(12).to_s + '.jpg') %>')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="site-heading">
+          <h1><%= current_user.email %></h1>
+          <hr class="small">
+          <span class="subheading"><%= current_user.email %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-lg-offset-1 col-md-6 col-md-offset-1"></div>
+    <div class="col-lg-1 col-lg-offset-1 col-md-1 col-md-offset-1">Pregunta:</div>
+    <div class="col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1"><%= current_user.current_question + 1 %> / 100</div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2">
+      <%= simple_form_for @question, url: answer_path, method: :post do |f|%>
+        <%= f.input :id, as: :hidden, input_html: { value: @question.id }%>
+        <h3 class="text-center">
+          <%= @question.content %>
+        </h3>
+        <br>
+        <div class="row">
+          <%= f.association :answers, collection: @question.answers.order('random()').map { |a| [a.content, a.id] }, as: :radio_buttons, input_html: { class: 'icheck-me', "data-skin" => "square", "data-color" => "red" } %>
+        </div>
+        <%= f.submit 'Siguiente', class: 'btn btn-success pull-right' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<hr>

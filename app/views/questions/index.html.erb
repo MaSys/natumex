@@ -1,0 +1,50 @@
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('<%= image_path('mexico-1.jpg') %>')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="site-heading">
+          <h1><%= current_user.email %></h1>
+          <hr class="small">
+          <span class="subheading"><%= current_user.email %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2">
+      <h2 class="text-center">
+        Bienvenido a la guia del examen de naturalizacion mexicana
+      </h2>
+      <br>
+      <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4"><%= link_to 'Iniciar examen', start_path, class: 'btn btn-primary' %></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2>Top 10</h2>
+        </div>
+      </div>
+      <% @top_users.each do |user|%>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <div class="col-md-8">
+              <%= user.first_name%> <%= user.last_name%>
+            </div>
+            <div class="col-md-2">
+              <%= number_to_percentage(user.last_calification, precision: 0) %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<hr>

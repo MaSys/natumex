@@ -1,0 +1,102 @@
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('<%= image_path('mexico-1.jpg') %>')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="site-heading">
+          <h1><%= current_user.email %></h1>
+          <hr class="small">
+          <span class="subheading"><%= current_user.email %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2">
+      <h2 class="text-center">
+      </h2>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <h2><%= (@answers_count[true] > 80) ? '¡Felicidades!' : '¡Lo sentimos!' %></h2>
+            Has terminado el examen, con el siguiente resultado: <%= number_to_percentage(@answers_count[true], precision: 0) %>
+        </div>
+        
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Pregunta</th>
+            <th>Tu respuesta</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @answers.each do |answer| %>
+          <tr>
+            <td>
+              <%= answer.question.content %>
+            </td>
+            <td>
+              <%= answer.answer.content %>
+            </td>
+            <td style="<%= (answer.currect_answer) ? 'color: green;' : 'color: red;' %>">
+              <i class="fa <%= (answer.currect_answer) ? 'fa-thumbs-o-up' : 'fa-thumbs-o-down'  %>"></i>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+        <!-- <div id="container" style="min&#45;width: 310px; height: 600px; max&#45;width: 800px; margin: 0 auto"></div> -->
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4"><%= link_to 'Intentar de nuevo?', start_path, class: 'btn btn-primary' %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+
+<script>
+$(function () {
+    $('#container').highcharts({
+chart: { plotBackgroundColor: null, plotBorderWidth: 0, plotShadow: false },
+title: { text: 'Resultados', align: 'center', verticalAlign: 'middle', y: 40 },
+tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>' },
+plotOptions: {
+pie: {
+dataLabels: {
+enabled: true,
+distance: -50,
+style: {
+fontWeight: 'bold',
+            color: 'white',
+            textShadow: '0px 1px 2px black'
+}
+},
+startAngle: -90,
+  endAngle: 90,
+  center: ['50%', '75%']
+  }
+},
+series: [{
+type: 'pie',
+      name: 'Resultado',
+      innerSize: '50%',
+      data: [
+        ['Respuestas correctas',   <%= @answers_count[true]%>],
+      ['Respuestas equivocadas',   <%= @answers_count[false]%>],
+      ]
+        }]
+});
+});
+
+
+</script>

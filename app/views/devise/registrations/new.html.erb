@@ -1,0 +1,28 @@
+<% image = image_path('mexico-9.jpg') %>
+<%= render partial: 'devise/shared/styles', locals: {image: image} %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="wrap">
+        <p class="form-title">Sign up</p>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'login signup-form' }) do |f| %>
+          <%= f.error_notification %>
+          <%= f.input :email, required: true, autofocus: true, wrapper: false %>
+          <%= f.input :password, required: true, wrapper: false, hint: (@minimum_password_length.to_s + t("minimum_characters") if @minimum_password_length) %>
+          <%= f.input :password_confirmation, required: true, wrapper: false %>
+          <%= f.input :first_name, required: true, wrapper: false %>
+          <%= f.input :last_name, required: true, wrapper: false %>
+          <%= f.button :submit, t("sign_up"), class: "btn btn-sm" %>
+          <div class="remember-forgot">
+            <div class="row">
+              <div class="col-md-12 forgot-pass-content">
+                <%= render "devise/shared/links" %>
+              </div>
+            </div>
+          </div>
+         <% end %>
+      </div>
+    </div>
+  </div>
+</div>
