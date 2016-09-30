@@ -11,6 +11,7 @@ namespace :generate do
     end
     File.open("public/questions.json","w") do |f|
       f.write(questions_json.to_json)
-    end 
+    end
+    puts 'done!'
   end
 end
