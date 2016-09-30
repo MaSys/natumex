@@ -9,7 +9,11 @@ module Api
       private
 
       def questions
-        questions = Question.all.includes(:answers)
+        if params[:id]
+          questions = Question.where(id: params[:id]).includes(:answers)
+        else
+          questions = Question.all.includes(:answers)
+        end
         questions.as_json(
           only: [:id, :content], include: {
             answers: {
